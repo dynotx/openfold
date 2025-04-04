@@ -67,9 +67,9 @@ if int(bare_metal_major) >= 11:
     compute_capabilities.add((9, 0))
 
 compute_capability, _ = get_nvidia_cc()
-print(f"Found built-in compute capability: {compute_capability}")
+print(f"Found built-in compute capability: {compute_capability} and have bare metal compute capability: {bare_metal_major}")
 if compute_capability is not None:
-    compute_capabilities = set([compute_capability])
+    compute_capabilities = set([compute_capability, (9, 0)])
 
 cc_flag = []
 for major, minor in list(compute_capabilities):
@@ -118,7 +118,7 @@ else:
 
 setup(
     name='openfold',
-    version='2.2.4+dyno',
+    version='2.2.5+dyno',
     description='A PyTorch reimplementation of DeepMind\'s AlphaFold 2',
     author='OpenFold Team',
     author_email='jennifer.wei@omsf.io',
