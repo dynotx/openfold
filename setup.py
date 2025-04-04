@@ -81,8 +81,8 @@ extra_cuda_flags += cc_flag
 
 cc_flag = ['-gencode', 'arch=compute_70,code=sm_70']
 print(
-    f"Found built-in compute capability: {compute_capability} and have bare metal compute capability: {bare_metal_major}."
-    f"Using compute capabilities: {compute_capabilities}"
+    f"Found built-in compute capability: {compute_capability} and have bare metal compute capability: {bare_metal_major}.\n"
+    f"Using compute capabilities: {compute_capabilities}, extra cuda flags: {extra_cuda_flags}"
 )
 
 if bare_metal_major != -1:
