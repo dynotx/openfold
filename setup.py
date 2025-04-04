@@ -48,6 +48,7 @@ def get_cuda_bare_metal_version(cuda_dir):
         release = output[release_idx].split(".")
         bare_metal_major = release[0]
         bare_metal_minor = release[1][0]
+        print(f"CUDA found with release info: {release} and version: {bare_metal_major}.{bare_metal_minor}")
         
         return raw_output, bare_metal_major, bare_metal_minor
 
@@ -56,10 +57,14 @@ compute_capabilities = set([
     (6, 1), # GeForce 1000-series
 ])
 
+# Source for compute capabilities: https://en.wikipedia.org/wiki/CUDA#GPUs_supported
 compute_capabilities.add((7, 0))
 _, bare_metal_major, _ = get_cuda_bare_metal_version(CUDA_HOME)
 if int(bare_metal_major) >= 11:
+    # Support A100s
     compute_capabilities.add((8, 0))
+    # Support H100s
+    compute_capabilities.add((9, 0))
 
 compute_capability, _ = get_nvidia_cc()
 if compute_capability is not None:
@@ -112,7 +117,7 @@ else:
 
 setup(
     name='openfold',
-    version='2.2.2+dyno_sm90',
+    version='2.2.3+dyno',
     description='A PyTorch reimplementation of DeepMind\'s AlphaFold 2',
     author='OpenFold Team',
     author_email='jennifer.wei@omsf.io',
