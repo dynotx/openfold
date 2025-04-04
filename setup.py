@@ -67,6 +67,7 @@ if int(bare_metal_major) >= 11:
     compute_capabilities.add((9, 0))
 
 compute_capability, _ = get_nvidia_cc()
+print(f"Found built-in compute capability: {compute_capability}")
 if compute_capability is not None:
     compute_capabilities = set([compute_capability])
 
