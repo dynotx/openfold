@@ -67,7 +67,6 @@ if int(bare_metal_major) >= 11:
     compute_capabilities.add((9, 0))
 
 compute_capability, _ = get_nvidia_cc()
-print(f"Found built-in compute capability: {compute_capability} and have bare metal compute capability: {bare_metal_major}")
 if compute_capability is not None:
     compute_capabilities = set([compute_capability, (9, 0)])
 
@@ -81,6 +80,10 @@ for major, minor in list(compute_capabilities):
 extra_cuda_flags += cc_flag
 
 cc_flag = ['-gencode', 'arch=compute_70,code=sm_70']
+print(
+    f"Found built-in compute capability: {compute_capability} and have bare metal compute capability: {bare_metal_major}."
+    f"Using compute capabilities: {compute_capabilities}"
+)
 
 if bare_metal_major != -1:
     modules = [CUDAExtension(
