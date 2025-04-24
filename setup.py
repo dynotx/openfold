@@ -121,7 +121,7 @@ else:
 
 setup(
     name='openfold',
-    version='2.2.6+dyno',
+    version='2.2.7+dyno',
     description='A PyTorch reimplementation of DeepMind\'s AlphaFold 2',
     author='OpenFold Team',
     author_email='jennifer.wei@omsf.io',
